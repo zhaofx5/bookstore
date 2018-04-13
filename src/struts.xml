@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    
+ 	<package name="default" namespace="/"  extends="struts-default">
+ 	<!-- 拦截器 -->
+ 	<interceptors>
+    <interceptor name="iaddcart" class="com.study.interceptor.AddCartInterceptor"></interceptor>
+    </interceptors>
+    <!-- 下面是二手物品交易模块 -->
+    
+    	<!-- 二手物品存入数据库 -->
+		<action name="saveGoods" class="com.seconddeal.action.SaveAction" method="execute">
+			<result name="SUCCESS" >/SecondHeadPage/saveSuccess.jsp</result>
+		</action> 
+		<!-- 将二手物品查询出来 -->
+		<action name="queryAllGoods" class="com.seconddeal.action.QueryAllGoodsAction" method="query">
+			<result name="SUCCESS">/SecondHeadPage/head.jsp</result>
+		</action>
+		<!-- 查询待审核的物品 -->
+		<action name="queryAllTestGoods" class="com.seconddeal.action.QueryAllTestGoodsAction" method="query">
+			<result name="SUCCESS">/SecondHeadPage/testGoods.jsp</result>
+		</action>
+		<!-- 物品管理员登陆界面 -->
+		<action name="goodsAdminLogin" class="com.study.action.LoginAction" method="adminLogin">
+			<result name="SUCCESS" type="chain">queryAllTestGoods</result>
+			<result name="FAIL">/errorbookmanager.jsp</result>
+		</action> 
+		<!-- 管理员改变物品的状态为１即可展示的状态 -->
+		<action name="changeState" class="com.seconddeal.action.ChangeStateAction" method="query">
+			<result name="SUCCESS" type="chain">queryAllTestGoods</result>
+		</action> 
+ 	<!-- 下面是二手图书出售模块 -->
+      <!-- 查询所有的图书 -->
+		<action name="query" class="com.study.action.QueryAllBooksAction" method="query">
+			<result name="SUCCESS">/index.jsp</result>
+		</action> 
+		<!-- 这个是用作管理图书的 -->
+		<action name="adminquery" class="com.study.action.QueryAllBooksAction" method="query">
+			<result name="SUCCESS">/managebook.jsp</result>
+		</action> 
+		<!-- 查询单本图书 -->
+		<action name="querySingleBook" class="com.study.action.QueryBookAction" method="execute">
+			<result name="SUCCESS">/displaybook.jsp</result>
+		</action> 
+		<!-- 购物车 -->
+		<action name="cart" class="com.study.action.CartAction" method="execute">
+		    <interceptor-ref name="iaddcart"></interceptor-ref>
+			<result name="SUCCESS" >/showcart.jsp</result>
+			<result name="LOGIN">/login.jsp</result>
+		</action> 
+		<!--  普通登录 -->
+		<action name="login" class="com.study.action.LoginAction" method="execute">
+			<result name="SUCCESS" type="chain">query</result>
+			<result name="FAIL">/error.jsp</result>
+		</action> 
+		<!-- 图书管理员登录 -->
+		<action name="adminlogin" class="com.study.action.LoginAction" method="adminLogin">
+			<result name="SUCCESS" type="chain">adminquery</result>
+			<result name="FAIL">/errorbookmanager.jsp</result>
+		</action> 
+		<!-- 用户注册 -->
+		<action name="reg" class="com.study.action.RegAction" method="execute">
+			<result name="SUCCESS" >/regSuccess.jsp</result>
+			<result name="FAIL">/error.jsp</result>
+		</action> 
+		
+    </package>
+</struts>    

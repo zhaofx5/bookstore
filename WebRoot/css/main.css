@@ -1,0 +1,68 @@
+
+.lstBook{
+ width:150px;
+ height:200px;
+ float:left;
+ margin:0px 30px 0px 0px;
+ overflow:hidden;
+ border-radius:20;
+ border:1px solid black;
+}
+.lstGood{
+	width:250px;
+ height:200px;
+ float:left;
+ margin:0px 30px 0px 0px;
+	
+}
+.lstBook:hover{
+ width:170px;
+ height:220px;
+ box-shadow:5px 5px 5px 5px gray;
+}
+.txt1{
+ color:green;
+ font-size:20px;
+}
+
+.txt2{
+ color:blue;
+ font-size:20px;
+ border-bottom:1px solid black;
+}
+hr{
+ margin:0px;
+}
+.lstpic:hover{
+//原始的几倍大小
+ zoom:1.2;
+}
+
+.loginstatus{
+ width:500px;
+}
+
+#head{
+ width:800px;
+ height:110px;
+ 
+ margin: 0px 0px 10px 0px;
+}
+
+#adv{
+ width:800px;
+ height:200px;
+ background:url('../img/bn01.jpg') no-repeat;
+}
+
+#content
+{
+ width:600px;
+ height:auto;
+ position:relative;
+ left:200px;
+}
+#main{
+ position:relative;
+ 
+}
